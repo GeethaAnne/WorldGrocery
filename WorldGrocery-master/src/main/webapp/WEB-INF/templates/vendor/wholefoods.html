@@ -1,0 +1,78 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+  </head>
+
+  <body id="body">
+  
+  	<div>
+      <img src="../../images/WholeFoods.jpg"  alt="WholeFoods logo" title="WholeFoods logo" 
+           th:src="@{/images/WholeFoods.jpg}" th:alt-title="#{logo}" />
+    </div>
+
+    <h1>Whole Foods <!--span th:text="${vend1.id}">Hot Garlic</span--></h1>
+    
+    <p> <div>
+  <table border="1">
+	<tr>
+  	<td><a href="http://www.wholefoodsmarket.com/" 
+  		th:href="@{http://www.wholefoodsmarket.com/}">HOME</a></td>
+  <td><a href="http://www.wholefoodsmarket.com/customer-service" 
+  		th:href="@{http://www.wholefoodsmarket.com/customer-service}">Customer Service</a></td>		
+  <td><a href="http://www.wholefoodsmarket.com/recipes" 
+  		th:href="@{http://www.wholefoodsmarket.com/recipes}">Recipes</a></td>
+  </tr></table></div> </p>
+  
+    <table>
+    <thead>
+        <tr>
+          <th>PRODUCT</th>
+          <th>PRICE</th>
+          <th>IN STOCK</th>
+          <th>Add to Cart</th>
+          <th>BUY</th>
+        </tr>
+      </thead>
+      <tr th:each="p : ${wholefoods.products}" th:class="${pStat.odd}? 'odd'">
+      <!--tr th:each="p : ${vend1.products}"-->
+        <td th:text="${p.name}">Default</td>
+        <td th:text="${p.price}">Default</td>
+        <td th:text="${p.inStock}">Default</td>
+        <td><a href="Checkout.html" th:href="@{/Checkout(prodId=${p.id})}">Add To Cart</a></td>
+        <td><a href="https://www.paypal.com" th:href="@{https://www.paypal.com}">Buy</a></td>
+        <!-- <td>
+          <form action="/safeway.html" th:action="@{/vendor/safeway}">
+      		<fieldset>
+        	<input type="submit" value="Add to Cart" />
+     		 </fieldset>
+    		</form>
+    	</td>
+        <td><form action="/safeway.html" th:action="@{/vendor/safeway}">
+      			<fieldset>
+        		<input type="submit" value="Buy" />
+     		 	</fieldset>
+    		</form>
+    		</td> -->
+      </tr>
+    </table>
+    <p>
+	    <form action="/gtvg/vendor/list.html">
+	    	<fieldset>
+	    	<input type="submit" value="Add Products" />
+	    	</fieldset>
+    	</form>
+    </p>
+    <p>
+      <a href="list.html" th:href="@{/vendor/list}">Return to Vendor list</a>
+    </p>
+    
+  </body>
+  
+</html>
+

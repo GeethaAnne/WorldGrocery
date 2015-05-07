@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+  </head>
+  <body>
+    <h1>Vendor list</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>PRODUCTS</th>
+        </tr>
+      </thead>
+      <tbody th:remove="all-but-first">
+        <tr th:each="vend : ${vends}" th:class="${vendStat.odd}? 'odd'">
+          <td th:text="${vend.id}">Onions</td>
+          <td th:text="${vend.name}">2.41</td>
+          <!--Switch Case for URL-->
+          <td th:switch="${vend.name}">
+            <p th:case="'Safeway'"><a href="/safeway.html"
+            th:href="@{/vendor/safeway}" >Safeway link</a></p>
+            <p th:case="'Trader Joe'"><a href="/traderjoe.html"
+            th:href="@{/vendor/traderjoe}" >Trader Joe Link</a></p>
+            <p th:case="'Whole Foods'"><a href="/wholefoods.html"
+            th:href="@{/vendor/wholefoods}" >Whole Foods Link</a></p>
+            <p th:case="'Sprouts'"><a href="/sprouts.html"
+            th:href="@{/vendor/sprouts}" >Sprouts Link</a></p>
+            <p th:case="'Target'"><a href="/target.html"
+            th:href="@{/vendor/target}" >Target Link</a></p>
+          </td>
+        </tr>
+        <tr class="odd">
+          <td>Blue Lettuce</td>
+          <td>9.55</td>
+          <td>no</td>
+          <td>
+            <span>0</span> comment/s
+          </td>
+        </tr>
+        <tr>
+          <td>Mild Cinnamon</td>
+          <td>1.99</td>
+          <td>yes</td>
+          <td>
+            <span>3</span> comment/s
+            <a href="comments.html">view</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+	    <form action="/gtvg/vendor/list.html">
+	    	<fieldset>
+	    	<input type="submit" value="Add Vendors" />
+	    	</fieldset>
+    	</form>
+    </p>	
+    <p>
+      <a href="../home.html" th:href="@{/}">Return to home</a>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Virtual Grocery</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../../css/gtvg.css" th:href="@{/css/gtvg.css}" />
+  </head>
+
+  <body id="body">
+
+    <h1>Availability </h1>
+  
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Available In Stores</th>
+          <th>Add to Cart</th>
+      
+        </tr>
+      </thead>
+      <tbody th:remove="all-but-first"> 
+     <tr th:each="p : ${storeName}" th:class="${pStat.odd}? 'odd'">
+     
+          <td th:text="${p}">Not Available
+         
+          </td>
+          <td>
+          <form>
+      <fieldset>
+       
+        <input type="button" value="Add to Cart" />
+        
+      </fieldset>
+    </form></td>
+        
+     </tr>
+     
+     </tbody>
+    </table>
+   
+    <p>
+      <a href="../home.html" th:href="@{/}">Return to home</a>
+    </p>
+  
+    
+  </body>
+  
+</html>
+
